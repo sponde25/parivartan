@@ -10,5 +10,7 @@ public interface AccessControl extends Serializable{
 	
 	public boolean isUserSignedIn();
 	
+	public boolean register(String username, String password, UserManager userManager);
+	
 	public String getPrincipalName();
 }

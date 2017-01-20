@@ -9,10 +9,10 @@ public class User implements Serializable{
 	private String password;
 	private int id = -1;
 	
-	public User(String username, String password, int id) {
+	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
-		this.id = id;
+		this.id = -1;
 	}
 	
 	public int getId() {

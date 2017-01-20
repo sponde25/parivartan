@@ -41,6 +41,7 @@ public class LoginScreen extends CssLayout {
 	private UserManager userManager;
 	private MyUI myUI;
 	
+	
 	public LoginScreen(MyUI myUI, AccessControl accesssControl, LoginListener loginListener) {
 		this.myUI = myUI;
 		this.accessControl = accesssControl;
@@ -51,7 +52,7 @@ public class LoginScreen extends CssLayout {
 		box.addComponent(title);
 		userID.setRequired(true);
 		pwd.setRequired(true);
-		registrationForm = new RegisterationForm(myUI,this);
+		registrationForm = new RegisterationForm(myUI,this,accessControl,userManager);
 //		splitter.setSizeFull();
 //    	splitter.setSplitPosition(100);
     	FormLayout login_register = new FormLayout();
