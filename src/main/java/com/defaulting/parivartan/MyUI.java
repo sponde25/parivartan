@@ -6,6 +6,7 @@ import com.defaulting.parivartan.authenticator.AccessControl;
 import com.defaulting.parivartan.authenticator.BasicAccessControl;
 import com.defaulting.parivartan.authenticator.LoginScreen;
 import com.defaulting.parivartan.authenticator.LoginScreen.LoginListener;
+import com.defaulting.parivartan.dashboard.MainScreen;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.Page;
@@ -62,12 +63,15 @@ public class MyUI extends UI {
     }
 
     private void showMainView() {
-    	Button b = new Button("Logout");
-    	b.addClickListener(e -> {
-    		VaadinSession.getCurrent().getSession().invalidate();
-    		Page.getCurrent().reload();
-    	});
-		setContent(b);
+//    	Button b = new Button("Logout");
+//    	b.addClickListener(e -> {
+//    		VaadinSession.getCurrent().getSession().invalidate();
+//    		Page.getCurrent().reload();
+//    	});
+//		setContent(b);
+    	addStyleName(ValoTheme.UI_WITH_MENU);
+        setContent(new MainScreen(MyUI.this));
+        getNavigator().navigateTo(getNavigator().getState());
 		
 	}
 
