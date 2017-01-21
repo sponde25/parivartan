@@ -1,12 +1,15 @@
 package com.defaulting.parivartan.userprofile;
 
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import com.defaulting.parivartan.backend.data.User;
 import com.defaulting.parivartan.backend.data.UserManager;
 import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.event.SelectionEvent;
 import com.defaulting.parivartan.backend.data.UserManager;
 
 import com.vaadin.navigator.View;
@@ -130,31 +133,27 @@ public class ProfileView extends CssLayout implements View {
 		Grid grid = new Grid("Available Tasks");
 		grid.setSelectionMode(SelectionMode.SINGLE);
 		//dummy data
-		List<String> dummy = new LinkedList<String>();
-		for(int i=0;i<10;i++){
-			dummy.add("Lorem Ipsum Dolores");
-		}
-		grid.setContainerDataSource( new BeanItemContainer<>(String.class,dummy));
-		//grid.setColumns("name","description");
+		List<Task> availableTasks = current.getAttemptedTasks();
+		grid.setContainerDataSource( new BeanItemContainer<>(Task.class,availableTasks));
+		grid.setColumns("name","description");
 		FormLayout ratingForm = new FormLayout();
-		Slider impactBar = new Slider("Impact", 1, 5);
-		impactBar.setValue(3.0);
-		Slider difficultyBar = new Slider("Difficulty", 1, 5);
-		difficultyBar.setValue(3.0);
-		Slider monetaryBar = new Slider("Monetary", 1, 5);
-		monetaryBar.setValue(3.0);
+		Slider impactBar = new Slider("Impact", 0, 5);
+		impactBar.setValue(0.0);
+		Slider difficultyBar = new Slider("Difficulty", 0, 5);
+		difficultyBar.setValue(0.0);
+		Slider monetaryBar = new Slider("Monetary", 0, 5);
+		monetaryBar.setValue(0.0);
 		
 		ratingForm.addComponents(impactBar,difficultyBar,monetaryBar);
 		ratingForm.setVisible(false);
-		impactBar.addListener(new Listener() {
-			
+		impactBar.addListener(new Listener() {			
 			@Override
 			public void componentEvent(Event event) {
 				if(difficultyBar.getValue()!=0.0 && monetaryBar.getValue()!=0.0){
 					//TODO : Anirudh we got the rating do the deletion after this comment but we have to save the values somewhere so call setters
-					 
+					current.setCompleted((Task) (selected.iterator().next()));
 					ratingForm.setVisible(false);
-					grid.setContainerDataSource( new BeanItemContainer<>(String.class,dummy));
+					grid.setContainerDataSource( new BeanItemContainer<>(Task.class,availableTasks));
 					
 				}
 			}
@@ -165,9 +164,9 @@ public class ProfileView extends CssLayout implements View {
 			public void componentEvent(Event event) {
 				if(impactBar.getValue()!=0.0 && monetaryBar.getValue()!=0.0){
 					//TODO : Anirudh we got the rating do the deletion after this comment we have to save the values somewhere so call setters
-					
+					current.setCompleted((Task) (selected.iterator().next()));
 					ratingForm.setVisible(false);
-					grid.setContainerDataSource( new BeanItemContainer<>(String.class,dummy));
+					grid.setContainerDataSource( new BeanItemContainer<>(Task.class,availableTasks));
 				}
 			}
 		});
@@ -177,9 +176,9 @@ public class ProfileView extends CssLayout implements View {
 			public void componentEvent(Event event) {
 				if(impactBar.getValue()!=0.0 && difficultyBar.getValue()!=0.0){
 					//TODO : Anirudh we got the rating do the deletion after this comment we have to save the values somewhere so call setters
-					
+					current.setCompleted((Task) (selected.iterator().next()));
 					ratingForm.setVisible(false);
-					grid.setContainerDataSource( new BeanItemContainer<>(String.class,dummy));
+					grid.setContainerDataSource( new BeanItemContainer<>(Task.class,availableTasks));
 				}
 			}
 		});
@@ -187,7 +186,9 @@ public class ProfileView extends CssLayout implements View {
 			if(evt.getSelected().isEmpty()){
 				ratingForm.setVisible(false);
 			}else{
+				setSelected(evt.getSelected());
 				ratingForm.setVisible(true);
+				
 			}
 		});
 		
@@ -198,26 +199,32 @@ public class ProfileView extends CssLayout implements View {
 		availableRatingPanel.addComponents(grid,ratingForm);
 		return availableRatingPanel;
 	}
+	Collection<Object> selected;
+	private void setSelected(Set<Object> selected) {
+		// TODO Auto-generated method stub
+		this.selected = selected;
+		
+	}
 	private HorizontalLayout getRecommendedGrid(User current){
 		Grid grid = new Grid("Recommended Tasks");
 		grid.setSelectionMode(SelectionMode.SINGLE);
 		//dummy data
-		List<String> dummy = new LinkedList<String>();
-		for(int i=0;i<10;i++){
-			dummy.add("Lorem Ipsum Dolores");
-		}
-		grid.setContainerDataSource( new BeanItemContainer<>(String.class,dummy));
-		//grid.setColumns("name","description");
+		List<Task> taskRecommended = current.getRecommenations();
+		Notification.show(""+taskRecommended.size());
+		grid.setContainerDataSource( new BeanItemContainer<>(Task.class,taskRecommended));
+		grid.setColumns("name","description");
 		FormLayout ratingForm = new FormLayout();
-		Slider impactBar = new Slider("Impact", 1, 5);
+		/*Slider impactBar = new Slider("Impact", 1, 5);
 		impactBar.setEnabled(false);
 		Slider difficultyBar = new Slider("Difficulty", 1, 5);
 		difficultyBar.setEnabled(false);
 		Slider monetaryBar = new Slider("Monetary", 1, 5);
-		monetaryBar.setEnabled(false);
-		ratingForm.addComponents(impactBar,difficultyBar,monetaryBar);
+		monetaryBar.setEnabled(false);*/
+		Button tryTask = new Button("TRY");
+		tryTask.setEnabled(false);
+		ratingForm.addComponents(tryTask);
 		ratingForm.setVisible(false);
-		impactBar.addListener(new Listener() {
+		/*impactBar.addListener(new Listener() {
 			
 			@Override
 			public void componentEvent(Event event) {
@@ -253,12 +260,22 @@ public class ProfileView extends CssLayout implements View {
 					grid.setContainerDataSource( new BeanItemContainer<>(String.class,dummy));
 				}
 			}
+		});*/
+		//SelectionEvent eventGrid = null;
+		tryTask.addClickListener(e -> {
+			current.setAttempted((Task) (selected.iterator().next()));
+			Notification.show("Signed up for this task");
+			ratingForm.setVisible(true);
+			grid.setContainerDataSource(new BeanItemContainer<>(Task.class, taskRecommended));
 		});
 		grid.addSelectionListener(evt -> {
 			if(evt.getSelected().isEmpty()){
 				ratingForm.setVisible(false);
+				tryTask.setEnabled(false);
 			}else{
+				setSelected(evt.getSelected());
 				ratingForm.setVisible(true);
+				tryTask.setEnabled(true);
 			}
 		});
 		

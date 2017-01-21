@@ -30,9 +30,22 @@ public class User implements Serializable{
 		this.password = password;
 		tasksAttempted = new LinkedList<>();
 		tasksCompleted = new LinkedList<>();
+		tasksRecommended = new LinkedList<>();
 		tasksForRecommend = DataCreation.getAllTasks();
+		init_testing();
 		friendList = new LinkedList<>();
 		
+	}
+	
+	private void init_testing() {
+		int a, r;
+		for(int i=0;i<3;i++) {
+			a = (int) (Math.random() * (tasksForRecommend.size()));
+			r = (int) (Math.random() * (tasksForRecommend.size()));
+			tasksAttempted.add(tasksForRecommend.get(a));
+			tasksRecommended.add(tasksForRecommend.get(r));
+			
+		}
 	}
 		
 	
@@ -79,7 +92,8 @@ public class User implements Serializable{
 	}
 	
 	public List<Task> getRecommenations(){
-		tasksRecommended = new Recommender().callRecommenderEngine(tasksForRecommend);
+		//TODO Add Recommendation
+		//tasksRecommended = new Recommender().callRecommenderEngine(tasksForRecommend);
 		return tasksRecommended;
 	}
 	
@@ -97,7 +111,7 @@ public class User implements Serializable{
 	public void setCompleted(Task task) {
 		tasksCompleted.add(task);
 		for(Task toTask :tasksAttempted) if(task.getName().equals(toTask.getName())) {
-			tasksCompleted.remove(toTask); break;
+			tasksAttempted.remove(toTask); break;
 		}
 	}
 	
@@ -107,5 +121,13 @@ public class User implements Serializable{
 			score += (task.getDifficulty() + task.getImpact() + task.getMonetary_value())/3;
 		return score;
 	}
+	
+	
+	
+	
+	
+	//added by rishabh to debug
+	
+	
 
 }
