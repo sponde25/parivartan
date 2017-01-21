@@ -36,7 +36,7 @@ public class MainScreen extends HorizontalLayout {
         menu = new Menu(navigator);
         //menu.addView(new SampleCrudView(), SampleCrudView.VIEW_NAME,
           //      SampleCrudView.VIEW_NAME, FontAwesome.EDIT);
-        menu.addView(new ProfileView(), ProfileView.VIEW_NAME, ProfileView.VIEW_NAME,
+        menu.addView(new ProfileView(ui.getUserManager()), ProfileView.VIEW_NAME, ProfileView.VIEW_NAME,
                 FontAwesome.USER_SECRET);
         menu.addView(new AboutView(), AboutView.VIEW_NAME, AboutView.VIEW_NAME,
                 FontAwesome.INFO_CIRCLE);
@@ -48,6 +48,8 @@ public class MainScreen extends HorizontalLayout {
         setExpandRatio(viewContainer, 1);
         setSizeFull();
     }
+    
+    
 
     // notify the view menu about view changes so that it can display which view
     // is currently active
