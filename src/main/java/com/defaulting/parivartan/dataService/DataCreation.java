@@ -15,10 +15,11 @@ import com.defaulting.parivartan.userprofile.Task;
 
 public class DataCreation {
 	private final static String PATH = System.getProperty("user.dir") + "\\files\\tasks.csv";
+	private static File tasks;
 	public static File populateData() {
 		
-		File tasks = new File(PATH);
-		if(tasks.exists()) return tasks;
+		tasks = new File(PATH);
+		if(tasks.exists()) tasks.delete();
 		try {
 			tasks.createNewFile();
 			PrintWriter taskWriter = new PrintWriter(tasks);
@@ -27,13 +28,14 @@ public class DataCreation {
 			int max = 5;
 			String task = "";
 			for(int i = 0; i<=10000; i++) {
-				task = "Task_" + i;
+				task += "" + i;
 				int atrr1 = min + (int) (Math.random() * (max-min+1));
 				int atrr2 = min + (int) (Math.random() * (max-min+1));
 				int atrr3 = min + (int) (Math.random() * (max-min+1));
 				task += "," + atrr1 + "," + atrr2 + "," + atrr3;
 				task += "\n";
 			}
+			//System.out.println(task);
 			taskWriter.write(task);
 			taskWriter.close();
 		
@@ -45,7 +47,7 @@ public class DataCreation {
 	}
 	
 	public static List<Task> getAllTasks(){
-		File tasks = new File(PATH);
+		 tasks = new File(PATH);
 		if(!tasks.exists()) populateData();
 		List<Task> taskList = new LinkedList<>();
 		try {
@@ -54,7 +56,7 @@ public class DataCreation {
 			String task;
 			while((task = br.readLine()) != null) {
 				String[] taskAr = task.split(",");
-				taskList.add(new Task(taskAr[0],"description",Integer.parseInt(taskAr[1]),
+				taskList.add(new Task("Task_"+taskAr[0],"description",Integer.parseInt(taskAr[1]),
 						Integer.parseInt(taskAr[2]), Integer.parseInt(taskAr[3])
 						));
 			}
