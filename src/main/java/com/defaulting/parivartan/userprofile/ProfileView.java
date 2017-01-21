@@ -30,10 +30,20 @@ public class ProfileView extends CssLayout implements View {
 			//Side bar for friends
 		});
 		
+		Button compareFriends = new Button();
+		compareFriends.setCaption("Compare Friends");
+		compareFriends.setIcon(FontAwesome.USER_TIMES);
+		compareFriends.setStyleName(ValoTheme.BUTTON_FRIENDLY);
+		compareFriends.addClickListener(e -> {
+			
+		});
+		
 		topBar.setSpacing(true);
 		topBar.setWidth("100%");
 		topBar.addComponent(addFriend);
 		topBar.setComponentAlignment(addFriend, Alignment.TOP_RIGHT);
+		topBar.addComponent(compareFriends);
+		topBar.setComponentAlignment(compareFriends, Alignment.TOP_LEFT);
 		//topBar.setStyleName("top-bar");
 		
 		addComponent(topBar);
