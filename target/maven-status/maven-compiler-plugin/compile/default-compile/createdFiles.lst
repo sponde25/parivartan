@@ -9,7 +9,6 @@ com\defaulting\parivartan\dashboard\Menu$1.class
 com\defaulting\parivartan\authenticator\LoginScreen$LoginListener.class
 com\defaulting\parivartan\MyUI$1.class
 com\defaulting\parivartan\authenticator\LoginScreen.class
-com\defaulting\parivartan\userprofile\Task.class
 com\defaulting\parivartan\dashboard\MainScreen$1.class
 com\defaulting\parivartan\about\AboutView.class
 com\defaulting\parivartan\authenticator\BasicAccessControl.class
@@ -17,6 +16,5 @@ com\defaulting\parivartan\dashboard\Menu$2.class
 com\defaulting\parivartan\MyUI.class
 com\defaulting\parivartan\authenticator\CurrentUser.class
 com\defaulting\parivartan\dashboard\Menu.class
-com\defaulting\parivartan\userprofile\ProfileView.class
 com\defaulting\parivartan\authenticator\AccessControl.class
 com\defaulting\parivartan\dashboard\MainScreen.class
