@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 import com.defaulting.parivartan.MyUI;
 import com.defaulting.parivartan.authenticator.LoginScreen.LoginListener;
+import com.defaulting.parivartan.backend.data.User;
 import com.defaulting.parivartan.backend.data.UserManager;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.CustomComponent;
@@ -80,7 +81,7 @@ class RegisterationForm extends FormLayout{
 	
 	public RegistrationState attemptRegistration() {
 		if(pwd.getValue().equals(cpwd.getValue())) {
-			if(accessControl.register(email.getValue(), pwd.getValue(), userManager))
+			if(accessControl.register(new User(email.getValue(), pwd.getValue()), userManager))
 				return RegistrationState.SUCCESSFUL;
 			return RegistrationState.USER_EXISTS;
 		}
