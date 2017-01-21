@@ -73,5 +73,33 @@ public class User implements Serializable{
 	public void setFriendList(List<String> friendList) {
 		this.friendList = friendList;
 	}
+	
+//	public List<Task> getAvailable(){
+//		List<Task> tasks = new LinkedList<Task>();
+//		int max = 5;
+//		int min = 1;
+//		for(int i=0;i<8;i++)
+//			{
+//			int arr1 = min + (int) (Math.random() * (max - min + 1));
+//			int arr2 = min + (int) (Math.random() * (max - min + 1));
+//					int arr3 = min + (int) (Math.random() * (max - min + 1));
+//			tasks.add(new Task("Task_Av_"+i,"Description",arr1,arr2,arr3));
+//			}
+//		return tasks;
+//	}
+//	
+//	public List<Task> getRecommended(){
+//		List<Task> tasks = new LinkedList<Task>();
+//		int max = 5;
+//		int min = 1;
+//		for(int i=0;i<8;i++)
+//			{
+//			int arr1 = min + (int) (Math.random() * (max - min + 1));
+//			int arr2 = min + (int) (Math.random() * (max - min + 1));
+//					int arr3 = min + (int) (Math.random() * (max - min + 1));
+//			tasks.add(new Task("Task_Av_"+i,"Description",arr1,arr2,arr3));
+//			}
+//		return tasks;
+//	}
 
 }
