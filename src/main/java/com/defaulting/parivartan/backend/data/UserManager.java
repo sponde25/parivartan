@@ -9,6 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
+import com.defaulting.parivartan.authenticator.CurrentUser;
 import com.vaadin.ui.Notification;
 
 public class UserManager {
@@ -51,6 +52,7 @@ public class UserManager {
 			return users;
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
+			System.out.println(usersFile.length());
 			e.printStackTrace();
 			return null;
 		}
@@ -68,5 +70,17 @@ public class UserManager {
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public boolean addFriend(String username) {
+		if(users.containsKey(username) && getCurrentUser().getFriendList().contains(username)) {
+			getCurrentUser().getFriendList().add(username);
+			users.get(username).getFriendList().add(CurrentUser.get());
+		}
+		return false;
+	}
+	
+	public User getCurrentUser() {
+		return users.get(CurrentUser.get());
 	}
 }

@@ -37,11 +37,12 @@ public class BasicAccessControl implements AccessControl{
 	}
 
 	@Override
-	public boolean register(String username, String password, UserManager userManager) {
+	public boolean register(User new_user, UserManager userManager) {
 		// TODO Auto-generated method stub
-		User new_user = new User(username, password);
+		
 		HashMap<String, User> users = userManager.getUsers();
-		if(!users.containsKey(username)) {
+		String username = new_user.getUsername();
+		if(!users.containsKey(username )) {
 			users.put(username, new_user);
 			userManager.setUsers(users);
 			return true;
