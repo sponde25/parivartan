@@ -73,9 +73,10 @@ public class UserManager {
 	}
 	
 	public boolean addFriend(String username) {
-		if(users.containsKey(username) && getCurrentUser().getFriendList().contains(username)) {
+		if(users.containsKey(username) && !getCurrentUser().getFriendList().contains(username)) {
 			getCurrentUser().getFriendList().add(username);
 			users.get(username).getFriendList().add(CurrentUser.get());
+			return true;
 		}
 		return false;
 	}

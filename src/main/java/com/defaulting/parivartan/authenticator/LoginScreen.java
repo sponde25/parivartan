@@ -46,7 +46,7 @@ public class LoginScreen extends CssLayout {
 		this.myUI = myUI;
 		this.accessControl = accesssControl;
 		this.loginListener = loginListener;
-		userManager = new UserManager();
+		userManager = myUI.getUserManager();
 		title.setStyleName(ValoTheme.LABEL_H1);
 		box.setSizeFull();
 		box.addComponent(title);

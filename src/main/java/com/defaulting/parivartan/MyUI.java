@@ -6,6 +6,7 @@ import com.defaulting.parivartan.authenticator.AccessControl;
 import com.defaulting.parivartan.authenticator.BasicAccessControl;
 import com.defaulting.parivartan.authenticator.LoginScreen;
 import com.defaulting.parivartan.authenticator.LoginScreen.LoginListener;
+import com.defaulting.parivartan.backend.data.UserManager;
 import com.defaulting.parivartan.dashboard.MainScreen;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
@@ -41,6 +42,7 @@ import com.vaadin.ui.themes.ValoTheme;
 public class MyUI extends UI {
 	
 	private AccessControl accessControl = new BasicAccessControl();
+	private UserManager userManager = new UserManager();
 	
     @Override
     protected void init(VaadinRequest vaadinRequest) {
@@ -74,6 +76,10 @@ public class MyUI extends UI {
         getNavigator().navigateTo(getNavigator().getState());
 		
 	}
+    
+    public UserManager getUserManager() {
+    	return userManager;
+    }
 
 	@WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
     @VaadinServletConfiguration(ui = MyUI.class, productionMode = false)
