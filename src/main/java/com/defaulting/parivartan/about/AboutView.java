@@ -4,26 +4,45 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.Version;
 import com.vaadin.shared.ui.label.ContentMode;
+import com.vaadin.ui.AbsoluteLayout;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.CustomLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.themes.ValoTheme;
 
 public class AboutView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "About";
 
     public AboutView() {
-        CustomLayout aboutContent = new CustomLayout("aboutview");
+        VerticalLayout aboutContent = new VerticalLayout();
         aboutContent.setStyleName("about-content");
-
+        Label label = new Label("Team:");
+        label.setStyleName(ValoTheme.LABEL_H3);
+        aboutContent.addComponent(label);
         // you can add Vaadin components in predefined slots in the custom
         // layout
-        aboutContent.addComponent(
-                new Label(FontAwesome.INFO_CIRCLE.getHtml()
-                        + " This application is using Vaadin "
-                        + Version.getFullVersion(), ContentMode.HTML), "info");
+        Label ajeet = new Label("Ajeet Singh @luciferajeet");
+        Label ani = new Label("Anirudh Jain @sponde25");
+        Label nikky = new Label("Nikita Kapoor @nikita204");
+        Label thuku = new Label("Rishabh Thukral @supercool276");
+        Label shrill = new Label("Shril Kumar @shril");
+        aboutContent.addComponent(ajeet);
+        aboutContent.addComponent(ani);
+        aboutContent.addComponent(thuku);
+        aboutContent.addComponent(nikky);
+        aboutContent.addComponent(shrill);
+        aboutContent.addComponent(new Label("Vist here for more: https://github.com/sponde25/parivartan/blob/master/README.md"));
+        //aboutContent.addComponent(
+        //        new Label(
+        //        		"Ajeet Singh @luciferajeet\r\n" + 
+        //        		"Anirudh Jain @sponde25\r\n" + 
+        //        		"Nikita Kapoor @nikita204\r\n" + 
+        //        		"Rishabh Thukral @supercool276\r\n" + 
+        //        		"Shril Kumar @shril"
+        //        		));
 
         setSizeFull();
         setStyleName("about-view");

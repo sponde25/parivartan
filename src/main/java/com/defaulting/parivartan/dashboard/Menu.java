@@ -55,7 +55,7 @@ public class Menu extends CssLayout {
         title.setSizeUndefined();
         Image image = new Image(null, new ThemeResource("img/table-logo.png"));
         image.setStyleName("logo");
-        top.addComponent(image);
+       // top.addComponent(image);
         top.addComponent(title);
         menuPart.addComponent(top);
 
