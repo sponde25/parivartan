@@ -1,6 +1,7 @@
 package com.defaulting.parivartan.dashboard;
 
 import java.util.HashMap;
+
 import java.util.Map;
 
 import com.vaadin.navigator.Navigator;
@@ -21,6 +22,7 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.Command;
 import com.vaadin.ui.MenuBar.MenuItem;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.themes.ValoTheme;
 
 /**
@@ -144,6 +146,7 @@ public class Menu extends CssLayout {
 
             @Override
             public void buttonClick(ClickEvent event) {
+            	//Notification.show("OK here we go");
                 navigator.navigateTo(name);
 
             }
