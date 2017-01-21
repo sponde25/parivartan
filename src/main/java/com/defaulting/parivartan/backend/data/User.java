@@ -5,9 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.defaulting.parivartan.dataService.DataCreation;
-import com.defaulting.parivartan.dataService.Recommender;
 import com.defaulting.parivartan.userprofile.Task;
-import com.defaulting.parivartan.userprofile.TaskManager;
 
 public class User implements Serializable{
 	
@@ -17,7 +15,7 @@ public class User implements Serializable{
 	private String dob;
 	private String profression;
 	private String name;
-	private List<String> friendList;
+	 List<String> friendList;
 	private List<Task> tasksAttempted;
 	private List<Task> tasksCompleted;
 	private List<Task> tasksRecommended;
@@ -28,12 +26,15 @@ public class User implements Serializable{
 	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
+		//tasks = new File(PATH);
+		//populate(tasks);
 		tasksAttempted = new LinkedList<>();
 		tasksCompleted = new LinkedList<>();
 		tasksRecommended = new LinkedList<>();
-		tasksForRecommend = DataCreation.getAllTasks();
-		init_testing();
-		friendList = new LinkedList<>();
+		tasksForRecommend = DataCreation.readRecommedations();
+		//init_testing();
+		
+		friendList = new LinkedList<String>();
 		
 	}
 	
@@ -83,6 +84,7 @@ public class User implements Serializable{
 
 
 	public List<String> getFriendList() {
+		System.out.println("  $$  "+ friendList.size());
 		return friendList;
 	}
 
@@ -93,7 +95,7 @@ public class User implements Serializable{
 	
 	public List<Task> getRecommenations(){
 		//TODO Add Recommendation
-		//tasksRecommended = new Recommender().callRecommenderEngine(tasksForRecommend);
+		tasksRecommended = DataCreation.readRecommedations();
 		return tasksRecommended;
 	}
 	
@@ -122,11 +124,6 @@ public class User implements Serializable{
 		return score;
 	}
 	
-	
-	
-	
-	
-	//added by rishabh to debug
 	
 	
 

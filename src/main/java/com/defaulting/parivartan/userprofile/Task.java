@@ -2,9 +2,6 @@ package com.defaulting.parivartan.userprofile;
 
 import java.io.Serializable;
 
-import java.util.LinkedList;
-import java.util.List;
-
 
 public class Task implements Serializable{
 	

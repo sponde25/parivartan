@@ -2,7 +2,6 @@ package com.defaulting.parivartan.userprofile;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.Serializable;
 import java.util.HashMap;
 
 import com.defaulting.parivartan.backend.data.User;

@@ -1,17 +1,12 @@
 package com.defaulting.parivartan.authenticator;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Iterator;
 
 import com.defaulting.parivartan.MyUI;
-import com.defaulting.parivartan.authenticator.LoginScreen.LoginListener;
 import com.defaulting.parivartan.backend.data.User;
 import com.defaulting.parivartan.backend.data.UserManager;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.CustomComponent;
-import com.vaadin.ui.DateField;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.NativeSelect;
@@ -19,7 +14,6 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.PopupDateField;
 import com.vaadin.ui.TextField;
-import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 
 class RegisterationForm extends FormLayout{

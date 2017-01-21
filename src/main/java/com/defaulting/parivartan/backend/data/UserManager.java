@@ -2,7 +2,6 @@ package com.defaulting.parivartan.backend.data;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -76,6 +75,8 @@ public class UserManager {
 		if(users.containsKey(username) && !getCurrentUser().getFriendList().contains(username)) {
 			getCurrentUser().getFriendList().add(username);
 			users.get(username).getFriendList().add(CurrentUser.get());
+			Notification.show(username+ " "+ CurrentUser.get());
+			//users.get(CurrentUser.get()).getFriendList().add(username);
 			return true;
 		}
 		return false;

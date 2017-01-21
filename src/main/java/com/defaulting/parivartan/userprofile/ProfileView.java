@@ -8,6 +8,7 @@ import java.util.Set;
 
 import com.defaulting.parivartan.backend.data.User;
 import com.defaulting.parivartan.backend.data.UserManager;
+import com.vaadin.data.Container;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.event.SelectionEvent;
 import com.defaulting.parivartan.backend.data.UserManager;
@@ -26,6 +27,7 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.PopupView;
 import com.vaadin.ui.Slider;
+import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Button.ClickEvent;
@@ -90,12 +92,49 @@ public class ProfileView extends CssLayout implements View {
 			addFriends.setPopupVisible(true);
 		});
 		
+		Table sample = new Table("");
+        //sample.setSizeFull();
+        //sample.setSelectable(true);
+        //sample.setMultiSelect(true);
+        //sample.setImmediate(true);
+        sample.addContainerProperty("Name", String.class, null);
+        sample.addContainerProperty("Score", String.class, null);
+        sample.setColumnWidth("Name", 336);
+        sample.setColumnWidth("Score",336);
+        sample.addItem(new Object[]{"Ajeet", "10.14 miT"}, 1);
+        sample.addItem(new Object[]{"Nikky", "7.54 miT"}, 2);
+        sample.addItem(new Object[]{"Anirudh", "17.70miT"}, 3);
+        sample.addItem(new Object[]{"Thuku", "9.28miT"}, 4);
+        sample.addItem(new Object[]{"Shrill", "10.37miT"}, 5); 
+        
+        
+		User current = userManager.getCurrentUser();
+		
+		List<String> friendNames = current.getFriendList();
+		System.out.println(" QQ " + friendNames.size());
+		int itr = 1;
+        for(String name:friendNames){
+        	Object[] item = new Object[2];
+        	System.out.println(name);
+        	item[0] = name;
+        	item[1] = "" + userManager.getUsers().get(name).getScore();
+        	sample.addItem(item,itr);
+        	itr++;
+        }
+		sample.setPageLength(sample.size());
+        PopupView compFriends = new PopupView("Compare Friends",sample);
+		
 		Button compareFriends = new Button();
 		compareFriends.setCaption("Compare Friends");
-		compareFriends.setIcon(FontAwesome.USER_TIMES);
+		compareFriends.setIcon(FontAwesome.USERS);
 		compareFriends.setStyleName(ValoTheme.BUTTON_FRIENDLY);
 		compareFriends.addClickListener(e -> {
-			
+			compFriends.setPopupVisible(true); 
+//			if(compFriends.isPopupVisible()){
+//				compFriends.setPopupVisible(false);
+//			}else{
+//				compFriends.setPopupVisible(true);
+//			}
 		});
 		
 		topBar.setSpacing(true);
@@ -106,7 +145,6 @@ public class ProfileView extends CssLayout implements View {
 		topBar.setComponentAlignment(compareFriends, Alignment.TOP_LEFT);
 		//topBar.setStyleName("top-bar");
 		
-		User current = userManager.getCurrentUser();
 		//HorizontalLayout availableAndRating = getAvailableGrid(current);
 		
 		
@@ -203,6 +241,7 @@ public class ProfileView extends CssLayout implements View {
 		addComponent(barAndGridLayout);
 		//addComponent(form);
 		addComponent(addFriends);
+		addComponent(compFriends);
 //		form.removeStyleName("visible");
 //        form.setEnabled(false);
 	}

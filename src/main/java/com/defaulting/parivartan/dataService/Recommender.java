@@ -1,6 +1,5 @@
 package com.defaulting.parivartan.dataService;
 
-import java.io.Serializable;
 import java.util.List;
 
 import com.defaulting.parivartan.userprofile.Task;

@@ -1,6 +1,5 @@
 package com.defaulting.parivartan.authenticator;
 
-import java.io.IOException;
 import java.io.Serializable;
 
 import com.defaulting.parivartan.backend.data.User;
