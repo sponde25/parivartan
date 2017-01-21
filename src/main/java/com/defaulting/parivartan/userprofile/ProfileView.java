@@ -1,11 +1,14 @@
 package com.defaulting.parivartan.userprofile;
 
+
 import java.util.LinkedList;
 import java.util.List;
 
 import com.defaulting.parivartan.backend.data.User;
 import com.defaulting.parivartan.backend.data.UserManager;
 import com.vaadin.data.util.BeanItemContainer;
+import com.defaulting.parivartan.backend.data.UserManager;
+
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.FontAwesome;
