@@ -107,29 +107,11 @@ public class ProfileView extends CssLayout implements View {
 		//topBar.setStyleName("top-bar");
 		
 		User current = userManager.getCurrentUser();
-		HorizontalLayout availableAndRating = getAvailableGrid(current);
-		HorizontalLayout recommendedGrid = getRecommendedGrid(current);
-		VerticalLayout grids = new VerticalLayout();
-		grids.setSpacing(true);
-		grids.setMargin(true);
-		grids.setSizeFull();
-		grids.addComponents(availableAndRating,recommendedGrid);
-		VerticalLayout barAndGridLayout = new VerticalLayout();
-        barAndGridLayout.addComponent(topBar);
-        barAndGridLayout.addComponent(grids);
-        barAndGridLayout.setMargin(true);
-        barAndGridLayout.setSpacing(true);
-        barAndGridLayout.setSizeFull();
-        barAndGridLayout.setExpandRatio(grids, 1);
-        barAndGridLayout.setStyleName("crud-main-layout");
+		//HorizontalLayout availableAndRating = getAvailableGrid(current);
 		
-		addComponent(barAndGridLayout);
-		//addComponent(form);
-		addComponent(addFriends);
-//		form.removeStyleName("visible");
-//        form.setEnabled(false);
-	}
-	private HorizontalLayout getAvailableGrid(User current){
+		
+		
+		
 		Grid grid = new Grid("Available Tasks");
 		grid.setSelectionMode(SelectionMode.SINGLE);
 		//dummy data
@@ -197,15 +179,41 @@ public class ProfileView extends CssLayout implements View {
 		availableRatingPanel.setMargin(true);
 		availableRatingPanel.setSizeFull();
 		availableRatingPanel.addComponents(grid,ratingForm);
-		return availableRatingPanel;
+		
+		
+		
+		
+		
+		
+		HorizontalLayout recommendedGrid = getRecommendedGrid(current, grid);
+		VerticalLayout grids = new VerticalLayout();
+		grids.setSpacing(true);
+		grids.setMargin(true);
+		grids.setSizeFull();
+		grids.addComponents(availableRatingPanel,recommendedGrid);
+		VerticalLayout barAndGridLayout = new VerticalLayout();
+        barAndGridLayout.addComponent(topBar);
+        barAndGridLayout.addComponent(grids);
+        barAndGridLayout.setMargin(true);
+        barAndGridLayout.setSpacing(true);
+        barAndGridLayout.setSizeFull();
+        barAndGridLayout.setExpandRatio(grids, 1);
+        barAndGridLayout.setStyleName("crud-main-layout");
+		
+		addComponent(barAndGridLayout);
+		//addComponent(form);
+		addComponent(addFriends);
+//		form.removeStyleName("visible");
+//        form.setEnabled(false);
 	}
+	
 	Collection<Object> selected;
 	private void setSelected(Set<Object> selected) {
 		// TODO Auto-generated method stub
 		this.selected = selected;
 		
 	}
-	private HorizontalLayout getRecommendedGrid(User current){
+	private HorizontalLayout getRecommendedGrid(User current, Grid grid2){
 		Grid grid = new Grid("Recommended Tasks");
 		grid.setSelectionMode(SelectionMode.SINGLE);
 		//dummy data
@@ -267,6 +275,7 @@ public class ProfileView extends CssLayout implements View {
 			Notification.show("Signed up for this task");
 			ratingForm.setVisible(true);
 			grid.setContainerDataSource(new BeanItemContainer<>(Task.class, taskRecommended));
+			grid2.setContainerDataSource(new BeanItemContainer<>(Task.class, current.getAttemptedTasks()));
 		});
 		grid.addSelectionListener(evt -> {
 			if(evt.getSelected().isEmpty()){
