@@ -10,7 +10,7 @@ public class Task implements Serializable{
 	private String name;
 	private String description;
 
-	public Task(int difficulty, int impact, int monetary_value, String name, String description) {
+	public Task(String name, String description, int difficulty, int impact, int monetary_value) {
 		// TODO Auto-generated constructor stub
 		this.description = description;
 		this.name = name;

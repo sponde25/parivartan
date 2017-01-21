@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.defaulting.parivartan.dataService.DataCreation;
 import com.defaulting.parivartan.userprofile.Task;
 import com.defaulting.parivartan.userprofile.TaskManager;
 
@@ -26,7 +27,7 @@ public class User implements Serializable{
 		this.password = password;
 		tasksAttempted = new LinkedList<>();
 		tasksCompleted = new LinkedList<>();
-		tasksForRecommend = new LinkedList<>();
+		tasksForRecommend = DataCreation.getAllTasks();
 		friendList = new LinkedList<>();
 	}
 		
