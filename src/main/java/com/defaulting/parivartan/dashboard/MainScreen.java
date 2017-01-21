@@ -3,6 +3,7 @@ package com.defaulting.parivartan.dashboard;
 import com.defaulting.parivartan.MyUI;
 
 import com.defaulting.parivartan.about.AboutView;
+import com.defaulting.parivartan.userprofile.ProfileView;
 
 //import com.example.CRUDEx.MyUI;
 //import com.example.CRUDEx.samples.about.AboutView;
@@ -35,14 +36,16 @@ public class MainScreen extends HorizontalLayout {
         menu = new Menu(navigator);
         //menu.addView(new SampleCrudView(), SampleCrudView.VIEW_NAME,
           //      SampleCrudView.VIEW_NAME, FontAwesome.EDIT);
+        menu.addView(new ProfileView(), ProfileView.VIEW_NAME, ProfileView.VIEW_NAME,
+                FontAwesome.USER_SECRET);
         menu.addView(new AboutView(), AboutView.VIEW_NAME, AboutView.VIEW_NAME,
                 FontAwesome.INFO_CIRCLE);
 
         navigator.addViewChangeListener(viewChangeListener);
 
         addComponent(menu);
-        //addComponent(viewContainer);
-        //setExpandRatio(viewContainer, 1);
+        addComponent(viewContainer);
+        setExpandRatio(viewContainer, 1);
         setSizeFull();
     }
 
@@ -58,6 +61,7 @@ public class MainScreen extends HorizontalLayout {
         @Override
         public void afterViewChange(ViewChangeEvent event) {
             menu.setActiveView(event.getViewName());
+            
         }
 
     };
