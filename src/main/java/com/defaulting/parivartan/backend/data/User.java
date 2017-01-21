@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.defaulting.parivartan.dataService.DataCreation;
+import com.defaulting.parivartan.dataService.Recommender;
 import com.defaulting.parivartan.userprofile.Task;
 import com.defaulting.parivartan.userprofile.TaskManager;
 
@@ -19,7 +20,9 @@ public class User implements Serializable{
 	private List<String> friendList;
 	private List<Task> tasksAttempted;
 	private List<Task> tasksCompleted;
+	private List<Task> tasksRecommended;
 	private List<Task> tasksForRecommend;
+	
 	
 	
 	public User(String username, String password) {
@@ -27,8 +30,22 @@ public class User implements Serializable{
 		this.password = password;
 		tasksAttempted = new LinkedList<>();
 		tasksCompleted = new LinkedList<>();
+		tasksRecommended = new LinkedList<>();
 		tasksForRecommend = DataCreation.getAllTasks();
+		init_testing();
 		friendList = new LinkedList<>();
+		
+	}
+	
+	private void init_testing() {
+		int a, r;
+		for(int i=0;i<3;i++) {
+			a = (int) (Math.random() * (tasksForRecommend.size()));
+			r = (int) (Math.random() * (tasksForRecommend.size()));
+			tasksAttempted.add(tasksForRecommend.get(a));
+			tasksRecommended.add(tasksForRecommend.get(r));
+			
+		}
 	}
 		
 	
@@ -73,5 +90,44 @@ public class User implements Serializable{
 	public void setFriendList(List<String> friendList) {
 		this.friendList = friendList;
 	}
+	
+	public List<Task> getRecommenations(){
+		//TODO Add Recommendation
+		//tasksRecommended = new Recommender().callRecommenderEngine(tasksForRecommend);
+		return tasksRecommended;
+	}
+	
+	public void setAttempted(Task task) {
+		tasksAttempted.add(task);
+		for(Task toTask : tasksRecommended) if(task.getName().equals(toTask.getName())) {
+			tasksRecommended.remove(toTask); break;
+		}
+	}
+	
+	public List<Task> getAttemptedTasks(){
+		return tasksAttempted;
+	}
+	
+	public void setCompleted(Task task) {
+		tasksCompleted.add(task);
+		for(Task toTask :tasksAttempted) if(task.getName().equals(toTask.getName())) {
+			tasksAttempted.remove(toTask); break;
+		}
+	}
+	
+	public float getScore() {
+		float score = 0;
+		for(Task task: tasksCompleted)
+			score += (task.getDifficulty() + task.getImpact() + task.getMonetary_value())/3;
+		return score;
+	}
+	
+	
+	
+	
+	
+	//added by rishabh to debug
+	
+	
 
 }

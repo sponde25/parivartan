@@ -1,52 +1,36 @@
-vaadin
-==============
+#Project Parivartan (_HackFest 2.0_)
+####A Web Application to combat Global Warming by reducing carbon footprint on an individual level
+##Team Defaulting 
+###Badass Coders:
+* Ajeet Singh [_@luciferajeet_](https://github.com/luciferajeet)
+* Anirudh Jain [_@sponde25_](https://github.com/sponde25)
+* Nikita Kapoor [_@nikita204_](https://github.com/nikita204)
+* Rishabh Thukral [_@supercool276_](https://github.com/supercool276)
+* Shril Kumar [_@shril_](https://github.com/shril)
 
-Template for a simple Vaadin application that only requires a Servlet 3.0 container to run.
+###Description
+Our team is building a tool to fight the Global Warming and Greenhouse Effect by training a recommender engine to recommend tasks to the users. The tasks would be calibrated to maximize the impact of each task while keeping in mind the user's preference and convenience. The primary purpose of this tool will be to minimize greenhouse emission on a user-by-user level to cut down the biggest non-industrial production of global warming without the need of major expenditure and fewer lifestyle changes. The highly optimized recommender engine chooses tasks from a wide database and also keeps track of impact till date.
 
+###Tech Stack
 
-Workflow
-========
+####Frontend:
+ - HTML CSS and JavaScript
+ - JQuery
+ - Bootstrap 3
+ - D3.js
+ - Google Material Design 
 
-To compile the entire project, run "mvn install".
+####Backend:
+ - Vaadin (Enterprise Grade Java Web Development Framework based on Google Web Toolkit)
+ - Java Persistence Layer to store User information and preferences
+ - Jetty server to quickly render web app with hot reload
+ - Flask SQLAlchemy and Jinja Templating for UI Design and rendering
 
-To run the application, run "mvn jetty:run" and open http://localhost:8080/ .
-
-To produce a deployable production mode WAR:
-- change productionMode to true in the servlet class configuration (nested in the UI class)
-- run "mvn clean package"
-- test the war file with "mvn jetty:run-war"
-
-Client-Side compilation
--------------------------
-
-The generated maven project is using an automatically generated widgetset by default. 
-When you add a dependency that needs client-side compilation, the maven plugin will 
-automatically generate it for you. Your own client-side customisations can be added into
-package "client".
-
-Debugging client side code
-  - run "mvn vaadin:run-codeserver" on a separate console while the application is running
-  - activate Super Dev Mode in the debug window of the application
-
-Developing a theme using the runtime compiler
--------------------------
-
-When developing the theme, Vaadin can be configured to compile the SASS based
-theme at runtime in the server. This way you can just modify the scss files in
-your IDE and reload the browser to see changes.
-
-To use the runtime compilation, open pom.xml and comment out the compile-theme 
-goal from vaadin-maven-plugin configuration. To remove a possibly existing 
-pre-compiled theme, run "mvn clean package" once.
-
-When using the runtime compiler, running the application in the "run" mode 
-(rather than in "debug" mode) can speed up consecutive theme compilations
-significantly.
-
-It is highly recommended to disable runtime compilation for production WAR files.
-
-Using Vaadin pre-releases
--------------------------
-
-If Vaadin pre-releases are not enabled by default, use the Maven parameter
-"-P vaadin-prerelease" or change the activation default value of the profile in pom.xml .
+####Machine Learning:
+ - JavaML for Backend Matrix Manipuations
+ - Apache Mahout for Recommender Engine Implementation
+ - Simple Logging Facade for Java
+ - Apache Commons Maths
+ 
+####Database
+ - Sqlite

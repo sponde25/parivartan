@@ -8,6 +8,7 @@ import com.defaulting.parivartan.authenticator.LoginScreen;
 import com.defaulting.parivartan.authenticator.LoginScreen.LoginListener;
 import com.defaulting.parivartan.backend.data.UserManager;
 import com.defaulting.parivartan.dashboard.MainScreen;
+import com.defaulting.parivartan.dataService.DataCreation;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.Page;
@@ -49,7 +50,7 @@ public class MyUI extends UI {
     	Responsive.makeResponsive(this);
         setLocale(vaadinRequest.getLocale());
         getPage().setTitle("Parivartan");
-        
+        //DataCreation.populateData();
         if(!accessControl.isUserSignedIn()) {
         	setContent(new LoginScreen(this, accessControl, new LoginListener() {
 				
