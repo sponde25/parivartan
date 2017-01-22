@@ -30,7 +30,7 @@ public class LoginScreen extends CssLayout {
 	private VerticalLayout box = new VerticalLayout();
 //	HorizontalSplitPanel splitter = new HorizontalSplitPanel();
 	private TabSheet tabs = new TabSheet();
-	private Label title = new Label("Parivartan");
+	private Label title = new Label("Parivartan           :                A step towards saving the planet.");
 //	private Button signUp = new Button("Register Me");
 	private TextField userID = new TextField("User ID");
 	private PasswordField pwd = new PasswordField("Password");
